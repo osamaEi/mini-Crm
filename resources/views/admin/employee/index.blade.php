@@ -8,7 +8,7 @@
 
 
 
-
+<div class="col-md-12">
 <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Employee List</h3>
@@ -20,6 +20,7 @@
                     <tr>
                       <th style="width: 10px">#</th>
                       <th>Employee Name</th>
+                      <th>Email</th>
                       <th>His Role</th>
                     </tr>
                   </thead>
@@ -29,6 +30,7 @@
                     <tr>
                       <td>{{$key+1}}.</td>
                       <td>{{$employee->name}}</td>
+                      <td>{{$employee->email}}</td>
                       <td>{{$employee->role}}</td>
            
                    
@@ -39,7 +41,7 @@
               </div>
               <!-- /.card-body -->
             </div>
-
+</div>
 
 
 

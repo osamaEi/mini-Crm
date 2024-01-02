@@ -38,7 +38,7 @@ class EmployeeController extends Controller
 
         ]);
 
-        return redirect()->back();
+        return redirect()->route('reports.index');
 
 
     }

@@ -19,14 +19,15 @@ use App\Http\Controllers\ActionTypeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
+
+//Route::get('/', function () {
+ // return view('welcome');
+//});
+
+
+ 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -40,7 +41,6 @@ Route::middleware(['auth','roles:admin'])->group(function() {
 
 
 Route::get('/admin/dashboard',[AdminController::class , 'admin_dashboard'])->name('admin.dashboard');
-
 Route::get('/admin/employee/add',[AdminController::class , 'add_employee'])->name('admin.add.employee');
 Route::post('/admin/employee/store',[AdminController::class , 'store_employee'])->name('admin.store.employee');
 Route::get('/admin/employee',[AdminController::class , 'show_admin_employee'])->name('show.admin.employee');
@@ -48,12 +48,13 @@ Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.
 
 });
 
-Route::get('/employee/logout',[EmployeeController::class,'EmployeeLogout'])->name('employee.logout');
 
 Route::controller(EmployeeController::class)->group(function(){
 
     Route::get('/employee/customers', 'view_customers')->name('employee.customers');
     Route::post('/employee/store_customers', 'store_customers')->name('employee.store_customers');
+    Route::get('/employee/logout','EmployeeLogout')->name('employee.logout');
+
 
   });
 Route::controller(ActionTypeController::class)->group(function(){
@@ -74,7 +75,7 @@ Route::controller(ActionTypeController::class)->group(function(){
 
   Route::controller(ReportController::class)->group(function(){
 
-    Route::get('/reports/index', 'index')->name('reports.index');
+    Route::get('/dashboard', 'index')->name('reports.index');
     Route::post('/reports/index', 'storeSelectedAction')->name('reports.store.action');
 
   });

@@ -4,20 +4,6 @@
 
 
 
-
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-Add New Customers</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Customer</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
       <div class="card card-primary">
         
@@ -27,7 +13,7 @@ Add New Customers</button>
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                    <label for="exampleInputEmail1">Customer Name</label>
                     <input type="name" name="name" class="form-control" iplaceholder="Enter New Action">
                   </div>
 
@@ -40,7 +26,7 @@ Add New Customers</button>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Add New Customer</button>
                 </div>
               </form>
             </div>
@@ -50,8 +36,7 @@ Add New Customers</button>
 </div>      </div>
     
     </div>
-  </div>
-</div>
+ 
 
 
 
@@ -60,42 +45,6 @@ Add New Customers</button>
 
 
 
-
-
-
-<div class="card">
-              <div class="card-header">
-                <h3 class="card-title">customers List</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Customer Name</th>
-                      <th>His Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                  @foreach($customers as $key => $customer)
-                    <tr>
-                      <td>{{$key+1}}.</td>
-                      <td>{{$customer->name}}</td>
-                      <td>
-       
-
-                {{$customer->user->name}}
-        </td>
-                   
-                    </tr>
-            @endforeach
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
 
 
 

@@ -64,7 +64,7 @@ class AdminController extends Controller
             'role' => $validatedData['role'],
         ]);
     
-        return redirect()->back();
+        return redirect()->route('show.admin.employee');
     }
     
 

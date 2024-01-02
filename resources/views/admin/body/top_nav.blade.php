@@ -20,8 +20,17 @@
         </a>
       </li>
 
-      <li><a class="dropdown-item d-flex align-items-center" href="{{ route('admin.logout') }}"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
-							</li>
-  
+      
+              <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+<span>{{Auth::user()->name}}<br>
+</span>          
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.logout') }}"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+    
+       
+        </div>
+      </li>
     </ul>
   </nav>
