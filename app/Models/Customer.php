@@ -22,11 +22,11 @@ class Customer extends Model
     
 
 
-    public function actions()
-    {
-        return $this->hasMany(ActionType::class); 
-    } 
+    public function actions() {
 
+        return $this->belongsToMany(ActionType::class, 'reports');
+    }
+    
     public function reports()
     {
         return $this->hasMany(Report::class);
@@ -34,10 +34,10 @@ class Customer extends Model
 
     public function customerHasActions($customerId, $actionId)
     {
-        // Assuming you have a reports table relating customers to actions
+        
         return Report::where('customer_id', $customerId)
                      ->where('action_type_id', $actionId)
                      ->exists();
     }
-    }// End Method 
+    }
 

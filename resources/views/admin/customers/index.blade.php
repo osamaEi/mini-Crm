@@ -6,7 +6,7 @@
 
 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-Add New Customers</button>
+Add New Customers to employee</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,6 +86,7 @@ Add New Customers</button>
                       <th style="width: 10px">#</th>
                       <th>Customer Name</th>
                       <th>His Employee</th>
+                      <th>Actions Done</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,6 +99,16 @@ Add New Customers</button>
        
 
                 {{$customer->user->name}}
+        </td>
+
+        
+        <td>
+
+        @foreach($customer->actions as $action)
+
+        {{$action->name}}/
+
+        @endforeach 
         </td>
                    
                     </tr>

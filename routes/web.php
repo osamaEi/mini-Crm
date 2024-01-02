@@ -39,14 +39,19 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth','roles:admin'])->group(function() {
 
+  Route::controller(AdminController::class)->group(function () {
 
-Route::get('/admin/dashboard',[AdminController::class , 'admin_dashboard'])->name('admin.dashboard');
-Route::get('/admin/employee/add',[AdminController::class , 'add_employee'])->name('admin.add.employee');
-Route::post('/admin/employee/store',[AdminController::class , 'store_employee'])->name('admin.store.employee');
-Route::get('/admin/employee',[AdminController::class , 'show_admin_employee'])->name('show.admin.employee');
-Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/dashboard', 'admin_dashboard')->name('admin.dashboard');
+    Route::get('/admin/employee/add','add_employee')->name('admin.add.employee');
+    Route::post('/admin/employee/store', 'store_employee')->name('admin.store.employee');
+    Route::get('/admin/employee','show_admin_employee')->name('show.admin.employee');
+    Route::get('/admin/logout','AdminLogout')->name('admin.logout');
 
 });
+
+});
+
+Route::middleware(['auth'])->group(function() {
 
 
 Route::controller(EmployeeController::class)->group(function(){
@@ -57,7 +62,7 @@ Route::controller(EmployeeController::class)->group(function(){
 
 
   });
-Route::controller(ActionTypeController::class)->group(function(){
+  Route::controller(ActionTypeController::class)->group(function(){
 
     Route::get('/action/type', 'index')->name('action.type.index');
     Route::get('/action/type/employee', 'view_employee')->name('action.type.employee');
@@ -79,3 +84,4 @@ Route::controller(ActionTypeController::class)->group(function(){
     Route::post('/reports/index', 'storeSelectedAction')->name('reports.store.action');
 
   });
+});
