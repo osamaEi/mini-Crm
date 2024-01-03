@@ -44,13 +44,11 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
     
-        // Check if $url is empty or not before dispatching SlowJob
         if (!empty($url)) {
     
             return redirect()->intended($url);
         } else {
-            // Handle the case where $url is empty
-            // Redirect to a default page or handle accordingly
+  
             return redirect('/');
         }
     }

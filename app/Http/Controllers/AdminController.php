@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Customer;
 
 class AdminController extends Controller
 {
@@ -57,6 +58,11 @@ class AdminController extends Controller
             'role' => 'required|string|in:admin,employee',
         ]);
     
+
+   $emailUser = User::where('email', $validatedData['email'])->first();
+    if ($emailUser) {
+        return redirect()->back()->with('error' , 'Email already exists');
+    }
         User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
@@ -68,6 +74,19 @@ class AdminController extends Controller
     }
     
 
+    public function changeEmployee(Request $request, $customerId)
+    {
+        $customer = Customer::findOrFail($customerId);
     
+        $request->validate([
+            'employee' => 'required|exists:users,id', 
+        ]);
+    
+        $customer->user_id = $request->input('employee');
+
+        $customer->save();
+    
+        return redirect()->back();
+    }
 
 }

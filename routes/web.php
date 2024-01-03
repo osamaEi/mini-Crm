@@ -46,6 +46,8 @@ Route::middleware(['auth','roles:admin'])->group(function() {
     Route::post('/admin/employee/store', 'store_employee')->name('admin.store.employee');
     Route::get('/admin/employee','show_admin_employee')->name('show.admin.employee');
     Route::get('/admin/logout','AdminLogout')->name('admin.logout');
+    Route::post('/customer/{customer}/change-employee', 'changeEmployee')->name('customer.change.employee');
+
 
 });
 

@@ -7,7 +7,7 @@
     <h3 class="card-title">New Employee</h3>
   </div>
 
-  <form action="{{ route('admin.store.employee') }}" enctype="multipart/form-data" method="post">
+<form action="{{ route('admin.store.employee') }}" enctype="multipart/form-data" method="post">
     @csrf
     <div class="card-body">
       <div class="row">
@@ -17,10 +17,15 @@
             <input type="text" name="name" class="form-control" placeholder=" Name">
           </div>
         </div>
+
         <div class="col-md-6">
+
           <div class="form-group">
             <label for="employeeEmail">Employee Email</label>
             <input type="email" name="email" class="form-control" placeholder="Email">
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+            
           </div>
         </div>
       </div>
@@ -59,4 +64,20 @@
 </div>
 
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', function(event) {
+      const password = document.querySelector('input[name="password"]').value;
+
+      if (password.length < 8) {
+        alert('Password should be at least 8 characters long.');
+        event.preventDefault(); // Prevent form submission
+      }
+    });
+  });
+</script>
+
 @endsection

@@ -87,6 +87,7 @@ Add New Customers to employee</button>
                       <th>Customer Name</th>
                       <th>His Employee</th>
                       <th>Actions Done</th>
+                      <th>chenge employee</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,7 +99,13 @@ Add New Customers to employee</button>
                       <td>
        
 
-                {{$customer->user->name}}
+           @if ($customer && $customer->user)
+    {{$customer->user->name}}
+@else
+   
+Not selected Employee
+    
+@endif
         </td>
 
         
@@ -110,7 +117,59 @@ Add New Customers to employee</button>
 
         @endforeach 
         </td>
+        <td> <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#changeEmployeeModal{{$customer->id}}">
+        Change
+    </button>
+    <div class="modal fade" id="changeEmployeeModal{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="changeEmployeeModalLabel{{$customer->id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Client Name : {{$customer->name}} </h5></div>
+
+        <form action="{{ route('customer.change.employee', ['customer' => $customer->id]) }}" enctype="multipart/form-data" method="post">
+                @csrf
+           
+
+                  <div class="form-group">
+  <select class="custom-select form-control-border border-width-2" id="roleSelect" name="employee">
+    <option value="" disabled selected>Choose Employee</option>
+    @foreach($employees as $employee)
+    <option value="{{$employee->id}}">{{$employee->name}}</option>
+
+    @endforeach
+    
+  </select>
+</div>
+                  
+          
+<div class="card-footer">
+                  <button type="submit" class="btn btn-warning">Chenge Employee</button>
+                </div>
+              </form>
+            
+                </div>
+                <!-- /.card-body -->
+
+
+
+
+</div>
+</div>
+
+
+</td>
                    
+
+
+
+
+
+
+
+
+
+
+
                     </tr>
             @endforeach
                   </tbody>
